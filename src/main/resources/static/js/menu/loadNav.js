@@ -20,7 +20,8 @@ async function loadMenu(){
       .forEach(toggle => toggle.hidden = true);
    setStyleByCurrentUrlAtNav(aside, nav);
    showToggleByCurrUrl(aside);
-   aside.onclick = toggleAsideSub;
+   aside.addEventListener("click", toggleAsideSub);
+//   aside.onclick = toggleAsideSub;
    hamburger.onclick = function(){
       let aside = document.querySelector('.aside');
       aside.classList.toggle('is-active');
@@ -92,8 +93,9 @@ function showToggleByCurrUrl(aside) {
 }
 // aside 제목(li) 선택 시 하위 리스트(ul) show toggle
 function toggleAsideSub(e) {
-   if (e.target.tagName !== 'H2') return;
    console.log(e.target);
+   if (e.target.tagName !== 'H2') return;
+//   let contentToggle = e.target.nextSibling;
    let contentToggle = e.target.nextElementSibling;
    contentToggle.hidden = !contentToggle.hidden;
 }

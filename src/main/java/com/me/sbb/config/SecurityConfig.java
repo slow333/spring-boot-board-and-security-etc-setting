@@ -46,12 +46,12 @@ public class SecurityConfig {
                       .requestMatchers("/**").permitAll()
                       .requestMatchers("/login").permitAll()
                       .requestMatchers("/h2-console").permitAll()
-                      .requestMatchers("/question/**").permitAll()
-                      .requestMatchers("/answer/**").permitAll()
-                      .requestMatchers("/board/**").permitAll()
+                      .requestMatchers("/spring/**").permitAll()
                       .requestMatchers("/sbb-UI/**").permitAll()
-                      .requestMatchers("/sbbui/**").permitAll()
                       .requestMatchers("/user/**").permitAll();
+//                      .requestMatchers("/question/**").permitAll()
+//                      .requestMatchers("/answer/**").permitAll()
+//                      .requestMatchers("/sbbui/**").permitAll()
             });
     return httpSecurity.build();
   }
