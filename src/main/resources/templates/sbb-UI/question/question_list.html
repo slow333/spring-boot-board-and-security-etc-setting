@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="/js/menu/loadNav.js"></script>
+</head>
+<body>
+<main>
+<h1>Question list</h1>
+  <section>
+  <h2>질문 내역</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>제목</th>
+        <th>작성일시</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="question : ${list}">
+        <td><a  th:href="@{|/sbb-UI/question/question_detail/${question.id}|}"
+             th:text="${question.subject}"></a></td>
+        <td th:style="${'width:220px; text-align:center'}"
+            th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+      </tr>
+      </tbody>
+    </table>
+    <button><a th:href="@{|/sbb-UI/question/question_create|}">질문 추가</a></button>
+  </section>
+</main>
+</body>
+</html>

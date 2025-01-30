@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="/js/menu/loadNav.js"></script>
+</head>
+<body>
+<main>
+<h1>Question detail</h1>
+  <section>
+  <h2>Question detail 화면</h2>
+    <h3 th:text="|제목 : ${question.subject}|"></h3>
+    <h3 th:text="|내용 : ${question.content}|"></h3>
+    <form th:action="@{|/sbb-UI/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
+      <div th:replace="~{/sbb-UI/utils/form_errors :: formErrorsFragment}"></div>
+      <textarea th:field="*{content}" id="content" cols="40" rows="4"> </textarea>
+      <input type="submit" value="Answer" id="add-answer"/>
+    </form>
+    </section>
+  <section>
+    <h2>Answer 내용</h2>
+    <h3 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h3>
+    <h4 th:each="answer : ${question.answerList}"
+        th:text="|${answer.content}"></h4>
+    <div th:each="answer : ${question.answerList}"
+        th:text="|
+        ${answer.id}: ${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm:ss')}
+        |"
+    id="answer-date"></div>
+  </section>
+</main>
+</body>
+</html>
