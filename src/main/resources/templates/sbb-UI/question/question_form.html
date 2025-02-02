@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <script src="/js/menu/loadNav.js"></script>
 </head>
@@ -13,7 +13,10 @@
     <h3>제목</h3>
     <input  type="text" th:field="*{subject}" id="subject">
     <h3>내용</h3>
-      <textarea th:field="*{content}" id="content" cols="30" rows="4"></textarea>
+<!--/*      <textarea sec:authorize="isAnonymous()" disabled
+                th:field="*{content}" id="content-disabled" cols="30" rows="4"></textarea> */-->
+    <textarea sec:authorize="isAuthenticated()"
+              th:field="*{content}" id="content" cols="30" rows="4"></textarea>
     <input id="add-question" type="submit" value="질문 추가" class="submit-btn">
   </form>
 </section>

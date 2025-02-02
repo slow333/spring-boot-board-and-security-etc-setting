@@ -6,6 +6,7 @@ import com.me.sbb.user.UserInfor;
 import com.me.sbb.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ public class AnswerController {
   private final AnswerService answerService;
   private final UserService userService;
 
+  @PreAuthorize("isAuthenticated()")
   @PostMapping("/answer/create/{question_id}")
   public String createAnswer(Model model,
                              @PathVariable("question_id") Integer question_id,

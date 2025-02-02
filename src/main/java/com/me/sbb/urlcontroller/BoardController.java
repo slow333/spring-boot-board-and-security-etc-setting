@@ -71,6 +71,7 @@ public class BoardController {
   public String setTemplates() {
     return "spring/01-basics/07-templates";
   }
+
   //########## 2번째 장: board base pages #################
   @GetMapping("/02-board-basic-page/01-question-list")
   public String questionListNote() {
@@ -133,31 +134,41 @@ public class BoardController {
     return "spring/03-board-advanced/06-login-logout";
   }
 
+  //########## 4번째 장 : 수정,삭제, 사용자 추가 등 #################
+  @GetMapping("/04-board-more/01-add-author")
+  public String addAuthor() {
+    return "spring/04-board-more/01-add-author";
+  }
+
+  @GetMapping("/04-board-more/02-edit-delete")
+  public String editDelete() {
+    return "spring/04-board-more/02-edit-delete";
+  }
 
 
 
 
-  //########## 4번째 장 : etc #################
-    @GetMapping("/04-board-etc/01-start")
+
+  //########## 5번째 장 : etc #################
+    @GetMapping("/05-board-etc/01-start")
   public String startEtc() {
-    return "spring/04-board-etc/01-start";
+    return "spring/05-board-etc/01-start";
   }
 
 
-  //########## 5번째 장 #################
-  @GetMapping("/05-JSP/01-settings")
+  //########## 6번째 장: JSP #################
+  @GetMapping("/06-JSP/01-settings")
   public String setJSP() {
-    return "spring/05-JSP/01-settings";
+    return "spring/06-JSP/01-settings";
   }
 
-  @GetMapping("/05-JSP/02-start-jsp")
+  @GetMapping("/06-JSP/02-start-jsp")
   public String startJSP() {
-    return "spring/05-JSP/02-start-jsp";
+    return "spring/06-JSP/02-start-jsp";
   }
 
-  @GetMapping("/05-JSP/03-method-scriptlit")
+  @GetMapping("/06-JSP/03-method-scriptlit")
   public String jspMethodScript() {
-    return "spring/05-JSP/03-method-scriptlit";
+    return "spring/06-JSP/03-method-scriptlit";
   }
-
 }
