@@ -16,4 +16,8 @@ public class RootController {
 //  public String index() {
 //    return "/board/sbb-index";
 //  }
+//  @GetMapping("/sbb-UI/login")
+//  public String login(){
+//    return "/sbb-UI/login";
+//  }
 }

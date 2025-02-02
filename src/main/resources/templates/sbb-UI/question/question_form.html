@@ -6,17 +6,17 @@
 <body>
 <main>
 <h1>Question 등록하기</h1>
-  <section>
-  <h2>질문 등록</h2>
-    <form th:action="@{|/sbb-UI/question/add|}" th:object="${questionForm}" method="post">
-      <div th:replace="~{/sbb-UI/utils/form_errors :: formErrorsFragment}"></div>
-      <h3>제목</h3>
-      <input  type="text" th:field="*{subject}" id="subject">
-      <h3>내용</h3>
-        <textarea th:field="*{content}" id="content" cols="30" rows="4"></textarea>
-      <input id="add-question" type="submit" value="질문 추가">
-    </form>
-    </section>
+<section>
+<h2>질문 등록</h2>
+  <form th:action="@{|/sbb-UI/question/create|}" th:object="${questionForm}" method="post">
+    <div th:replace="~{/sbb-UI/utils/form_errors :: formErrorsFragment}"></div>
+    <h3>제목</h3>
+    <input  type="text" th:field="*{subject}" id="subject">
+    <h3>내용</h3>
+      <textarea th:field="*{content}" id="content" cols="30" rows="4"></textarea>
+    <input id="add-question" type="submit" value="질문 추가" class="submit-btn">
+  </form>
+</section>
 </main>
 </body>
 </html>

@@ -41,6 +41,12 @@ main {
   min-height: calc(100vh - 77px);
   /*min-height: 100vh;*/
 }
+.no-aside {
+  margin-top: 60px;
+  margin-left: 17px;
+  min-height: calc(100vh - 102px);
+}
+
 section {
   margin: 6px 2px;
   padding: 0 10px 10px 10px;
@@ -75,7 +81,7 @@ h2 {
   font-size: var(--h2);
 }
 h2:before {
-  content: "◼";
+  content: "■";
   padding-right: 8px;
   color: var(--coloraccent);
 }
@@ -85,7 +91,7 @@ h3 {
   font-weight: normal;
 }
 h3:before {
-  content: "◾";
+  content: "•";
   padding-right: 8px;
   color: var(--coloraccent);
 }
@@ -95,13 +101,13 @@ h4, h5, h6  {
   margin: 7px 0 0 20px;
 }
 h4:before {
-  content: "▸ ";
+  content: "‣ ";
   padding-left: 8px;
   color: #bd0000;
 }
 h5, h6 {font-size: var(--p)}
 h5:before {
-  content: " ▫ ";
+  content: " º ";
   padding-left: 18px;
   color: #0021dc;
 }
@@ -148,6 +154,7 @@ tr, td, th {
   border: 1px solid var(--colorbright);
   border-collapse: collapse;
 }
+
 /* ====== nav menu ====== */
 #navbar {
   position: fixed;
@@ -174,6 +181,25 @@ tr, td, th {
 #navbar ul {
   display: flex;
 }
+.navbar > .nav.login {
+  margin-left: 15px;
+}
+.navbar > .nav.login:before {
+  content:" | "; color: #bbb;
+  margin-right: 15px;
+}
+.navbar > .nav.login a {
+  background: green;
+  color: white;
+  border: 1px solid white;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 4px 13px;
+  margin-top: 4px;
+}
+.navbar > .nav.login a:hover {
+  background: var(--coloraccent)
+}
 .navbar li {
   cursor: pointer;
   list-style: none;
@@ -182,7 +208,6 @@ tr, td, th {
 .navbar li a {
   display: inline-block;
   cursor: pointer;
-  list-style: none;
   padding: 10px 20px;
 }
 .navbar a, .navbar a:visited, .navbar a:link {
@@ -400,4 +425,64 @@ td > a {
     width: 40px;
     height: 40px;
   }
+}
+/* ====== paging ====== */
+.pagination{
+  display: flex; justify-content: center;
+}
+.pagination li {
+    display: inline-block;
+    cursor: pointer;
+    list-style: none;
+    margin-top: 10px
+}
+.pagination li a {
+    cursor: pointer;
+    list-style: none;
+    padding: 2px 6px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+  color: gray;
+}
+.pagination li a.active {
+  background: #333; color: #fefefe;
+}
+.small.answer, .small.date {
+  font-size: 10px; color: #666;
+  background: #eee;
+  padding: 2px 4px;
+  margin-left: 6px;
+}
+/** ######## login, subscribe form ######### */
+.no-aside.login, .subscribe {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.no-aside.login > h1 {
+  margin:10px 0 20px; padding:0;
+}
+.login-form, .subscribe-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.login-form div input,
+.login-subscribe div input {
+  display:inline-block;
+  width : 300px;
+  margin:0; padding: 6px 20px;
+}
+.login-form div input[type="submit"],
+.subscribe-form div input[type="submit"] {
+  width:300px; margin:0;
+}
+.subscribe > h1 {
+  margin: 20px
+}
+.login-form #username, .login-form #password ,
+.subscribe-form #username, .subscribe-form #password,
+.subscribe-form #email  {
+
 }

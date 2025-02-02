@@ -1,19 +1,12 @@
 package com.me.sbb;
 
-import com.me.sbb.answer.Answer;
 import com.me.sbb.answer.AnswerRepository;
-import com.me.sbb.question.Question;
 import com.me.sbb.question.QuestionRepository;
 import com.me.sbb.question.QuestionService;
-import jakarta.transaction.Transactional;
+import com.me.sbb.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,8 +23,20 @@ class SbbApplicationTests {
 	@Autowired
 	private QuestionService questionService;
 
+	@Autowired
+	private UserService userService;
+
 	@Test
 	void jpaTest() {
+
+//		UserInfor user = new UserInfor();
+//		user.setUsername("root");
+//		user.setPassword("111");
+//		user.setEmail("slow@gmail.com");
+//		user.setSubscribeDate(LocalDateTime.now());
+//
+//		this.userService.createUser(user);
+
 //		Question q1 = new Question();
 //		q1.setSubject("내용 추가해보기");
 //		q1.setContent("아직 시험중");
@@ -74,9 +79,16 @@ class SbbApplicationTests {
 //		assertTrue(an1.isPresent());
 //		Answer anInstance = an1.get();
 //		System.out.println(anInstance);
+//
+//		List<Question> allList = this.questionRepository.findAll();
+//		List<Question> allList2 = this.questionService.getList();
+//		assertEquals(5, allList2.size());
 
-		List<Question> allList = this.questionRepository.findAll();
-		List<Question> allList2 = this.questionService.getList();
-		assertEquals(5, allList2.size());
+//		for(int i=1; i <= 300; i++){
+//			String subject = String.format("subject 테스트 데이터 : [%03d]", i);
+//			String content = String.format("content 테스트 데이터 : [%03d]", i);
+//			this.questionService.addQuestion(subject, content, null);
+//		}
+
 	}
 }

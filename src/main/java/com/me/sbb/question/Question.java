@@ -1,6 +1,7 @@
 package com.me.sbb.question;
 
 import com.me.sbb.answer.Answer;
+import com.me.sbb.user.UserInfor;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,9 @@ public class Question {
 
   @OneToMany(mappedBy = "question" , cascade = CascadeType.REMOVE)
   private List<Answer> answerList;
+
+  @ManyToOne
+  private UserInfor author;
 
   @Override
   public String toString() {

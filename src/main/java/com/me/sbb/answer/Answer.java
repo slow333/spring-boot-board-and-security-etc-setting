@@ -1,6 +1,7 @@
 package com.me.sbb.answer;
 
 import com.me.sbb.question.Question;
+import com.me.sbb.user.UserInfor;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,9 @@ public class Answer {
 
   @ManyToOne
   private Question question;
+
+  @ManyToOne
+  private UserInfor author;
 
   @Override
   public String toString() {

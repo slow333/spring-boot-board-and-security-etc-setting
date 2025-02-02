@@ -54,6 +54,9 @@ async function setNavEl(navText){
 }
 // nav에 설정된 href를 활용해서 현재의 location 기반 aside file 선택
 async function selectAsideUrl () {
+   if(location.href == "http://localhost:8080/sbb-UI/login" ) {
+      return null;
+   }
    let asideName = location.href.split('/')[3] || "HOME";
    if(asideName.length > 0 && asideName !== "HOME"){
       document.title = asideName;

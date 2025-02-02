@@ -1,10 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--/* <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml"> */-->
 <ul class="navbar">
   <li class="nav home"><a href="/">HOME</a></li>
-<!--  <li class="nav board"><a href="/board/01-basic-page/sbb-index">Board-Note</a></li>-->
   <li class="nav sbb-UI"><a href="/sbb-UI/question/question_list">Sbb-UI</a></li>
   <li class="nav spring"><a href="/spring/00-setting/index">Spring</a></li>
-<!--  <li class="nav javascript"><a href="/js/01-intro/01-start">JavaScript</a></li>-->
-<!--  <li class="nav html"><a href="/html/01-document/01-browser-env">HTML</a></li>-->
-<!--  <li class="nav java"><a href="/java/01-basic/01-data-type">JAVA</a></li>-->
+  <li class="nav login">
+    <a sec:authorize="isAnonymous()" href="/sbb-UI/user/login">login</a>
+    <a sec:authorize="isAuthenticated()" href="/sbb-UI/user/logout">logout</a>
+  </li>
+  <li class="nav login"><a href="/sbb-UI/user/signup">SignUp</a></li>
 </ul>
 <button class="navBtn">🔻</button>
+</html>

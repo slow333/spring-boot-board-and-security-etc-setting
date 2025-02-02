@@ -14,7 +14,7 @@ public class BoardController {
     return "spring/sbb-index";
   }
 
-  //########## 0번째 장 #################
+  //########## 0번째 장 : spring boot settings #################
   @GetMapping("/00-setting/01-about-spring-boot")
   public String aboutSb() {
     return "spring/00-setting/01-about-spring-boot";
@@ -35,7 +35,7 @@ public class BoardController {
     return "spring/00-setting/04-intellij-setting";
   }
 
-  //########## 1번째 장 #################
+  //########## 1번째 장: basic project setting #################
   @GetMapping("/01-basics/00-project-architecture")
   public String projectArchitecture() {
     return "spring/01-basics/00-project-architecture";
@@ -71,7 +71,7 @@ public class BoardController {
   public String setTemplates() {
     return "spring/01-basics/07-templates";
   }
-  //########## 2번째 장 #################
+  //########## 2번째 장: board base pages #################
   @GetMapping("/02-board-basic-page/01-question-list")
   public String questionListNote() {
     return "spring/02-board-basic-page/01-question-list";
@@ -102,17 +102,42 @@ public class BoardController {
     return "spring/02-board-basic-page/06-validation";
   }
 
-//########## 3번째 장 #################
+//########## 3번째 장: advanced #################
   @GetMapping("/03-board-advanced/01-nav-bar")
   public String navBar() {
     return "spring/03-board-advanced/01-nav-bar";
+  }
+
+  @GetMapping("/03-board-advanced/02-paging")
+  public String paging() {
+    return "spring/03-board-advanced/02-paging";
+  }
+
+  @GetMapping("/03-board-advanced/03-board-detail")
+  public String boardDetail() {
+    return "spring/03-board-advanced/03-board-detail";
+  }
+
+  @GetMapping("/03-board-advanced/04-spring-security")
+  public String aboutSpringSecurity() {
+    return "spring/03-board-advanced/04-spring-security";
+  }
+
+  @GetMapping("/03-board-advanced/05-user-subscribe")
+  public String userSubscribe() {
+    return "spring/03-board-advanced/05-user-subscribe";
+  }
+
+  @GetMapping("/03-board-advanced/06-login-logout")
+  public String loginAndLogout() {
+    return "spring/03-board-advanced/06-login-logout";
   }
 
 
 
 
 
-  //########## 4번째 장 #################
+  //########## 4번째 장 : etc #################
     @GetMapping("/04-board-etc/01-start")
   public String startEtc() {
     return "spring/04-board-etc/01-start";

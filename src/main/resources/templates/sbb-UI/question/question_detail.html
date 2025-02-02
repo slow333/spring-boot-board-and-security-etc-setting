@@ -17,15 +17,15 @@
     </form>
     </section>
   <section>
-    <h2>Answer 내용</h2>
-    <h3 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h3>
-    <h4 th:each="answer : ${question.answerList}"
-        th:text="|${answer.content}"></h4>
+    <h2 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h2>
     <div th:each="answer : ${question.answerList}"
-        th:text="|
-        ${answer.id}: ${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm:ss')}
-        |"
-    id="answer-date"></div>
+        style="display:flex; justify-content:space-between; gap:2rem;
+        width:90%; margin:6px;">
+      <span th:text="| • ${answer.content}|"></span>
+      <span class="small date"
+          th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm:ss')}">
+      </span>
+    </div>
   </section>
 </main>
 </body>
