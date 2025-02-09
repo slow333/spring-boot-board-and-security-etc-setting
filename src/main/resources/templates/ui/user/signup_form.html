@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <script src="/js/menu/loadNav.js"></script>
+  <script defer type="text/javascript" th:src="@{/js/menu/loadNav_noNav.js}"></script>
 </head>
 <body>
+<nav th:replace="~{ui/utils/navbar :: navbarFragment}"></nav>
 <main style="height: 90vh">
   <div class="login-signup" >
     <h1>회원 가입 페이지</h1>
-    <form th:action="@{/sbb-UI/user/signup}"
+    <form th:action="@{|/ui/user/signup|}"
           th:object="${userForm}"
           method="post" class="subscribe-form">
-      <div th:replace="~{/sbb-UI/utils/form_errors :: formErrorsFragment}"></div>
+      <div th:replace="~{ui/utils/form_errors :: formErrorsFragment}"></div>
 
       <div>username : <br>
         <input type="text" id="username" th:field="*{username}"

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/spring")
 public class BoardController {
 
-  @GetMapping("/00-setting/index")
+  @GetMapping("/00-setting/sbb-index")
   public String sbbIndex() {
     return "spring/sbb-index";
   }

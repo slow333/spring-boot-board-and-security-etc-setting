@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <script defer type="text/javascript" th:src="@{/js/menu/loadNav_noNav.js}"></script>
+</head>
+<body>
+<nav th:replace="~{ui/utils/navbar :: navbarFragment}"></nav>
+<main>
+<h1>Question detail</h1>
+  <section>
+  <h2>Question detail 화면</h2>
+    <h3 th:text="|제목 : ${question.subject}|"></h3>
+    <h3 th:text="|내용 : ${question.content}|"></h3>
+    <form th:action="@{|/ui/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
+<!--/*      <div th:replace="~{ui/utils/form_errors :: formErrorsFragment}"></div> */-->
+      <div th:if="${#fields.hasAnyErrors()}">
+        <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+      </div>
+      <textarea
+              sec:authorize="isAuthenticated()" th:field="*{content}" cols="40" rows="4">
+      </textarea>
+      <textarea
+              sec:authorize="isAnonymous()" disabled th:field="*{content}" cols="40" rows="4">
+      </textarea>
+      <input type="submit" value="Answer" id="add-answer"/>
+    </form>
+    </section>
+  <section >
+    <h2 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h2>
+    <div th:each="answer : ${question.answerList}"
+        style="display:flex; justify-content:space-between;
+        width:96%; margin:6px;">
+      <div th:text="| • ${answer.content}|"></div>
+      <div>
+        <span class="small date" th:if="${question.author != null}"
+              th:text="${question.author.username}" > </span>
+        <span class="small date"
+                th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm:ss')}" >
+        </span>
+        <a th:href="@{|/ui/question/modify/${question.id}|}"
+           sec:authorize="isAuthenticated()"
+           th:if="${question.author != null and
+                   #authentication.getPrincipal().getUsername() == question.author.username}"
+           class="small date" style="text-decoration:none;"
+           th:text="수정"></a>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

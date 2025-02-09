@@ -1,8 +1,5 @@
 async function loadMenu(){
    await loadHeadLinks();
-   let responseNav = await fetch('/components/common/nav.html');
-   let navText = await responseNav.text();
-   let nav = await setNavEl(navText);
 
    await loadFooter("/components/common/footer.html");
 
@@ -18,7 +15,7 @@ async function loadMenu(){
    let aside = await setAside(asideText);
    document.querySelectorAll('aside ul li ul')
       .forEach(toggle => toggle.hidden = true);
-   setStyleByCurrentUrlAtNav(aside, nav);
+   setStyleByCurrentUrlAtNav(aside);
    showToggleByCurrUrl(aside);
    aside.addEventListener("click", toggleAsideSub);
 //   aside.onclick = toggleAsideSub;
@@ -43,15 +40,6 @@ async function loadHeadLinks(){
    return linksText;
 }
 
-// responseText를 가지고 nav element 생성
-async function setNavEl(navText){
-   let nav = document.createElement('nav');
-   nav.setAttribute('class', 'navbar');
-   nav.setAttribute('id', 'navbar');
-   nav.innerHTML = navText;
-   document.body.prepend(nav);
-   return nav
-}
 // nav에 설정된 href를 활용해서 현재의 location 기반 aside file 선택
 async function selectAsideUrl () {
    if(location.href == "http://localhost:8080/ui/user/login" ) {
@@ -77,13 +65,14 @@ async function setAside(asideText) {
 }
 // 현재 location.href를 활용 현재 선택된 sub menu style 변경
 // 현재 aside의 id에 따라 nav menu style 변경
-function setStyleByCurrentUrlAtNav(aside, nav) {
+function setStyleByCurrentUrlAtNav(aside) {
    aside.querySelectorAll('a').forEach(function (a) {
       if (location.href.includes(a.href)) {
          a.classList.add('currentUrl');
       }
    });
    let id = document.querySelector('aside').id;
+   let nav = document.querySelector("nav");
    nav.querySelector(`.${id}`).style.background = 'black';
 }
 // 1. 현재 location.href를 활용해서 a.href를 검색
@@ -92,6 +81,7 @@ function showToggleByCurrUrl(aside) {
    let findHref = location.href.split('/')[5];
    console.log(findHref);
    let selectedLink = aside.querySelector('a[href*='+`"${findHref}"`+']');
+   console.log(selectedLink)
    selectedLink.closest('ul').hidden = false;
 }
 // aside 제목(li) 선택 시 하위 리스트(ul) show toggle

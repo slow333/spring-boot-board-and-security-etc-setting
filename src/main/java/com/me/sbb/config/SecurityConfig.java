@@ -25,18 +25,21 @@ public class SecurityConfig {
   @Bean
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
     http
-      .authorizeHttpRequests((auth ->  auth
-          .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()))
+      .authorizeHttpRequests((auth -> auth
+          .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+          .requestMatchers(new AntPathRequestMatcher("/ui/**")).permitAll()
+              )
+      )
       .csrf(csrf -> csrf
           .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
       .headers(headers ->  headers
         .addHeaderWriter(new XFrameOptionsHeaderWriter(
             XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
       .formLogin((formLogin) ->  formLogin
-        .loginPage("/sbb-UI/user/login")
-        .defaultSuccessUrl("/sbb-UI/question/question_list"))
+        .loginPage("/ui/user/login")
+        .defaultSuccessUrl("/ui/question/question_list"))
       .logout(logout -> logout
-        .logoutRequestMatcher(new AntPathRequestMatcher("/sbb-UI/user/logout"))
+        .logoutRequestMatcher(new AntPathRequestMatcher("/ui/user/logout"))
         .logoutSuccessUrl("/")
         .invalidateHttpSession(true))
       ;

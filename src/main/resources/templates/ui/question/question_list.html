@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <script src="/js/menu/loadNav.js"></script>
+  <script defer type="text/javascript" th:src="@{/js/menu/loadNav_noNav.js}"></script>
 </head>
 <body>
+<nav th:replace="~{ui/utils/navbar :: navbarFragment}"></nav>
 <main>
 <h1>Question list</h1>
   <section>
@@ -21,7 +22,7 @@
       <tr th:each="question, loop : ${pagingList}">
         <td style="text-align: center"
            th:text="${pagingList.getTotalElements - (pagingList.number * pagingList.size) - loop.index}"></td>
-        <td><a th:href="@{|/sbb-UI/question/question_detail/${question.id}|}"
+        <td><a th:href="@{|/ui/question/question_detail/${question.id}|}"
              th:text="${question.subject}"></a>
           <span class="small answer"
                 th:if="${#lists.size(question.answerList) > 0}"
@@ -37,7 +38,7 @@
     <!-- 페이징처리 시작 -->
     <div th:if="${!pagingList.isEmpty()}">
       <ul class="pagination">
-        <li><a th:href="@{|?page=0|}">&lt;&lt;</a></li>
+        <li><a th:href="@{|?page=0|}">처음</a></li>
         <li th:classappend="${!pagingList.hasPrevious} ? 'disabled'">
           <a th:href="@{|?page=${pagingList.number-1}|}">Prev</a>
         </li>
@@ -50,11 +51,11 @@
         <li th:classappend="${!pagingList.hasNext} ? 'disabled'">
           <a th:href="@{|?page=${pagingList.number+1}|}">Next</a>
         </li>
-        <li><a th:href="@{|?page=${pagingList.totalPages -1}|}">&gt;&gt;</a></li>
+        <li><a th:href="@{|?page=${pagingList.totalPages -1}|}">끝</a></li>
       </ul>
     </div>
     <!-- 페이징처리 끝 -->
-    <button><a th:href="@{|/sbb-UI/question/create|}">질문 추가</a></button>
+    <button><a th:href="@{|/ui/question/create|}">질문 추가</a></button>
   </section>
 </main>
 </body>
