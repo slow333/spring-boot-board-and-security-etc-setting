@@ -79,9 +79,9 @@ function setStyleByCurrentUrlAtNav(aside) {
 // 2. 해당 a 객체가 포함된 ul 객체에 대해 보이게 하기
 function showToggleByCurrUrl(aside) {
    let findHref = location.href.split('/')[5];
-   console.log(findHref);
+//   console.log(findHref);
    let selectedLink = aside.querySelector('a[href*='+`"${findHref}"`+']');
-   console.log(selectedLink)
+//   console.log(selectedLink)
    selectedLink.closest('ul').hidden = false;
 }
 // aside 제목(li) 선택 시 하위 리스트(ul) show toggle

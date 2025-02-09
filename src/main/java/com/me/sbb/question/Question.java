@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -34,6 +35,9 @@ public class Question {
 
   @ManyToOne
   private UserInfor author;
+
+  @ManyToMany
+  Set<UserInfor> like;
 
   @Override
   public String toString() {

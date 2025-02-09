@@ -60,5 +60,10 @@ public class QuestionService {
   public void delete(Question question) {
     this.questionRepository.delete(question);
   }
+
+  public void like(Question question, UserInfor userInfor) {
+    question.getLike().add(userInfor);
+    this.questionRepository.save(question);
+  }
 }
 

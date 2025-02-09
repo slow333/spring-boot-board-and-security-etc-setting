@@ -338,21 +338,18 @@ button, .btn, input {
   margin: 2px 0;
   border-radius: 4px;
 }
-button#edit-delete, button.edit-delete {
-  border: none;
-  background-color: var(--coloraccent);
-  color: var(--colorsecondary);
-  font-size: 14px;
-  margin: 2px 0;
-  border-radius: 4px;
-  width: 140px;
-  height:30px;
+
+a.edit-delete {
+  padding: 4px 10px; text-decoration: none;
+  background: #333; color: #fff;
+  border: none; border-radius: 6px;
 }
-button#edit-delete a, button.edit-delete a {
-  padding: 0; margin:0;
-  display: inline-block;
-  text-decoration: none;
-  color: white;
+a.edit-delete.answer {
+  font-size: 12px;
+}
+a.edit-delete:hover {
+  background: #888;
+  cursor:pointer;
 }
 input {
   background-color: var(--colorbright);

@@ -44,4 +44,9 @@ public class AnswerService {
   public void delete(Answer answer) {
     this.answerRepository.delete(answer);
   }
+
+  public void like(Answer answer, UserInfor userInfor) {
+    answer.getLike().add(userInfor);
+    this.answerRepository.save(answer);
+  }
 }

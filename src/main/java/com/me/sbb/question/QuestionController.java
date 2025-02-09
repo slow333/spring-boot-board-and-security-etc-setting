@@ -27,17 +27,18 @@ public class QuestionController {
 
   @GetMapping("/question_list")
   public String pagingQuestionList(Model model,
-                                   @RequestParam(value="page", defaultValue = "0") int page) {
+                                   @RequestParam(value = "page", defaultValue = "0") int page) {
     Page<Question> paging = this.questionService.getList(page);
     model.addAttribute("pagingList", paging);
-    return baseUrl +"question_list";
+    return baseUrl + "question_list";
   }
+
   @PreAuthorize("isAuthenticated()")
-  @GetMapping(value={"/question_detail/{id}", "/question_detail"})
+  @GetMapping(value = {"/question_detail/{id}", "/question_detail"})
   public String detailQuestion(Model model,
                                @PathVariable(required = false) Integer id,
                                AnswerForm answerForm) {
-    if(id == null) {
+    if (id == null) {
       id = 1;
     }
     Question question = this.questionService.getQuestion(id);
@@ -54,14 +55,14 @@ public class QuestionController {
   @PreAuthorize("isAuthenticated()")
   @PostMapping("/create")
   public String createQuestion(@Valid QuestionForm questionForm,
-                            BindingResult bindingResult,
-                            Principal principal) {
-    if(bindingResult.hasErrors()){
+                               BindingResult bindingResult,
+                               Principal principal) {
+    if (bindingResult.hasErrors()) {
       return baseUrl + "question_form";
     }
     UserInfor userInfor = this.userService.getUser(principal.getName());
 
-    this.questionService.addQuestion(questionForm.getSubject(),questionForm.getContent(), userInfor);
+    this.questionService.addQuestion(questionForm.getSubject(), questionForm.getContent(), userInfor);
 
     return "redirect:/ui/question/question_list";
   }
@@ -69,10 +70,10 @@ public class QuestionController {
   @PreAuthorize("isAuthenticated()")
   @GetMapping("/modify/{id}")
   public String questionModify(QuestionForm questionForm,
-          @PathVariable("id") Integer id, Principal principal) {
+                               @PathVariable("id") Integer id, Principal principal) {
 
     Question question = this.questionService.getQuestion(id);
-    if(!question.getAuthor().getUsername().equals(principal.getName())) {
+    if (!question.getAuthor().getUsername().equals(principal.getName())) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
     }
     questionForm.setSubject(question.getSubject());
@@ -107,5 +108,14 @@ public class QuestionController {
     }
     this.questionService.delete(question);
     return "redirect:/ui/question/question_list";
+  }
+
+  @PreAuthorize("isAuthenticated()")
+  @GetMapping("/like/{id}")
+  public String questionLike(Principal principal, @PathVariable("id") Integer id) {
+    Question question = this.questionService.getQuestion(id);
+    UserInfor userInfor = this.userService.getUser(principal.getName());
+    this.questionService.like(question, userInfor);
+    return String.format("redirect:/ui/question/question_detail/%s", id);
   }
 }

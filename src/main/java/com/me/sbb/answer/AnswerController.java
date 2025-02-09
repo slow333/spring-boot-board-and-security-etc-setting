@@ -30,11 +30,11 @@ public class AnswerController {
   public String createAnswer(Model model, @PathVariable("id") Integer id,
                              @Valid AnswerForm answerForm, BindingResult bindingResult,
                              Principal principal) {
-    
+
     Question question = this.questionService.getQuestion(id);
     UserInfor userInfor = this.userService.getUser(principal.getName());
     // validation 관련(AnswerForm을 받아서 처리)
-    if(bindingResult.hasErrors()){
+    if (bindingResult.hasErrors()) {
       model.addAttribute("question", question);
       return "ui/question/question_detail";
     }
@@ -42,6 +42,7 @@ public class AnswerController {
     this.answerService.create(question, answerForm.getContent(), userInfor);
     return String.format("redirect:/ui/question/question_detail/%s", id);
   }
+
   @PreAuthorize("isAuthenticated()")
   @GetMapping("/modify/{id}")
   public String answerModify(AnswerForm answerForm,
@@ -80,6 +81,16 @@ public class AnswerController {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
     }
     this.answerService.delete(answer);
+    return String.format("redirect:/ui/question/question_detail/%s", answer.getQuestion().getId());
+  }
+
+  @PreAuthorize("isAuthenticated()")
+  @GetMapping("/like/{id}")
+  public String answerLike(@PathVariable("id") Integer id,
+                           Principal principal) {
+    Answer answer = this.answerService.getAnswer(id);
+    UserInfor userInfor = this.userService.getUser(principal.getName());
+    this.answerService.like(answer, userInfor);
     return String.format("redirect:/ui/question/question_detail/%s", answer.getQuestion().getId());
   }
 }

@@ -150,6 +150,11 @@ public class BoardController {
     return "spring/04-board-more/03-like";
   }
 
+  @GetMapping("/04-board-more/04-anchor")
+  public String addAnchor() {
+    return "spring/04-board-more/04-anchor";
+  }
+
 
 
   //########## 5번째 장 : etc #################
