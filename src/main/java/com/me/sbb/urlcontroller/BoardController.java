@@ -11,7 +11,7 @@ public class BoardController {
 
   @GetMapping("/00-setting/sbb-index")
   public String sbbIndex() {
-    return "spring/sbb-index";
+    return "spring/00-setting/sbb-index";
   }
 
   //########## 0번째 장 : spring boot settings #################
@@ -145,7 +145,10 @@ public class BoardController {
     return "spring/04-board-more/02-edit-delete";
   }
 
-
+  @GetMapping("/04-board-more/03-like")
+  public String addLike() {
+    return "spring/04-board-more/03-like";
+  }
 
 
 

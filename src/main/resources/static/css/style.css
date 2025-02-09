@@ -338,6 +338,22 @@ button, .btn, input {
   margin: 2px 0;
   border-radius: 4px;
 }
+button#edit-delete, button.edit-delete {
+  border: none;
+  background-color: var(--coloraccent);
+  color: var(--colorsecondary);
+  font-size: 14px;
+  margin: 2px 0;
+  border-radius: 4px;
+  width: 140px;
+  height:30px;
+}
+button#edit-delete a, button.edit-delete a {
+  padding: 0; margin:0;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
 input {
   background-color: var(--colorbright);
   color: var(--colorprimary);
@@ -371,16 +387,7 @@ form #subject, form #content, form #add-question ,form #add-answer{
   text-align: right;
   font-size: 15px;
 }
-/** form {
-  display: flex; align-items: center;
-  gap: 1rem;
-  margin: 10px;
-} */
-button > a {
-/** button > a:active, a:link, a:visited { */
-  text-decoration: none;
-  color: white;
-}
+
 td > a {
   text-decoration: none;
   color: black;
@@ -448,10 +455,9 @@ td > a {
   background: #333; color: #fefefe;
 }
 .small.answer, .small.date {
-  font-size: 10px; color: #666;
-  background: #eee;
-  padding: 2px 4px;
-  margin-left: 6px;
+  font-size: 12px; color: white;
+  background: #444;
+  padding: 4px 8px;
 }
 /** ######## login, subscribe form ######### */
 .no-aside.login, .subscribe {

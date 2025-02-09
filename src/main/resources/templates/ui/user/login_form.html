@@ -5,7 +5,8 @@
 </head>
 <body>
 <nav th:replace="~{ui/utils/navbar :: navbarFragment}"></nav>
-<main style="height: 90vh">
+<main style="height: 90vh; display:flex; flex-direction:column;
+     align-item:center;margin-right:150px;">
   <div class="login-signup" >
     <h1>Login</h1>
     <form class="subscribe-form" th:action="@{|/ui/user/login|}" method="post">
