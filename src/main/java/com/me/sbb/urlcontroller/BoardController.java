@@ -155,6 +155,11 @@ public class BoardController {
     return "spring/04-board-more/04-anchor";
   }
 
+  @GetMapping("/04-board-more/05-markdown")
+  public String addMarkdown() {
+    return "spring/04-board-more/05-markdown";
+  }
+
 
 
   //########## 5번째 장 : etc #################

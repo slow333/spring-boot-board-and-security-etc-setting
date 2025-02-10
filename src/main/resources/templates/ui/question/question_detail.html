@@ -10,7 +10,7 @@
   <section>
   <h2>Question detail 화면</h2>
     <h3 th:text="|제목 : ${question.subject}|"></h3>
-    <h3 th:text="|내용 : ${question.content}|"></h3>
+    <h3 th:utext="${@commonUtil.markdown(question.content)}"></h3>
     <form th:action="@{|/ui/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
 <!--/* answerForm을 object로 주입해서 answer 객체를 가져올수 있음 */-->
       <div th:replace="~{ui/utils/form_errors :: formErrorsFragment}"></div>
@@ -46,7 +46,8 @@
   <section >
     <h2 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h2>
     <div th:each="answer : ${question.answerList}" style="width:96%; margin:6px;">
-      <div th:text="| • ${answer.content}|"></div>
+      <a th:id="|answer_${answer.id}|"></a>
+      <div th:utext="${@commonUtil.markdown(answer.content)}"></div>
       <div style="margin-left:10px;">
       <span class="small date" th:if="${answer.author != null}"
             th:text="${answer.author.username}" >
@@ -79,28 +80,20 @@
 </main>
 <script>
   const deleteQ = document.querySelector("#delete_q");
-  deleteQ?.addEventListener('click', function() {
-    if(confirm("정말로 삭제하시겠습니까?")) {
-        location.href = this.dataset.uri;
-    };
-  });
   const deleteA = document.querySelector("#delete_a");
-  deleteA?.addEventListener('click', function() {
+  const qLike = document.querySelector(".questionLike");
+  const aLikes = document.querySelectorAll(".answerLike");
+
+  deleteQ?.addEventListener('click', setLocation);
+  deleteA?.addEventListener('click', setLocation);
+  qLike.addEventListener('click', setLocation);
+  aLikes.forEach(el => el.addEventListener('click', setLocation));
+
+  function setLocation() {
     if(confirm("정말로 삭제하시겠습니까?")) {
         location.href = this.dataset.uri;
     };
-  });
-  const qLike = document.querySelector(".questionLike");
-  qLike.addEventListener('click', function() {
-    if(confirm("정말로 추천하시겠습니까?")) {
-        location.href = this.dataset.uri;
-    };
-  });
-  const aLikes = document.querySelectorAll(".answerLike");
-  aLikes.forEach(el => el.addEventListener('click', function() {
-      if(confirm("정말로 추천하시겠습니까?")) { location.href = this.dataset.uri;  };
-    })
-  );
+  }
 </script>
 </body>
 </html>

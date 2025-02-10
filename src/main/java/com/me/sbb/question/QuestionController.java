@@ -36,7 +36,7 @@ public class QuestionController {
   @PreAuthorize("isAuthenticated()")
   @GetMapping(value = {"/question_detail/{id}", "/question_detail"})
   public String detailQuestion(Model model,
-                               @PathVariable(required = false) Integer id,
+                               @PathVariable(required = false, name="id") Integer id,
                                AnswerForm answerForm) {
     if (id == null) {
       id = 1;

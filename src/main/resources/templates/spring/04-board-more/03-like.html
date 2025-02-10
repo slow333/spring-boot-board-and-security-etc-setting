@@ -32,9 +32,9 @@
 const aLikes = document.querySelectorAll(".answerLike");
 aLikes.forEach(function(element) {
     element.addEventListener('click', function() {
-        if(confirm("정말로 추천하시겠습니까?")) {
-            location.href = this.dataset.uri;
-        };
+      if(confirm("정말로 추천하시겠습니까?")) {
+          location.href = this.dataset.uri;
+      };
     });
 });  </pre>
   <h3>question service에 like method 추가</h3>
@@ -71,10 +71,10 @@ aLikes.forEach(function(element) {
   @GetMapping("/like/{id}")
   public String answerLike(Principal principal,
                            @PathVariable("id") Integer id) {
-      Answer answer = this.answerService.getAnswer(id);
-      UserInfor userInfor = this.userService.getUser(principal.getName());
-      this.answerService.like(answer, userInfor);
-      return String.format("redirect:/ui/question/question_detail/%s", answer.getQuestion().getId());
+    Answer answer = this.answerService.getAnswer(id);
+    UserInfor userInfor = this.userService.getUser(principal.getName());
+    this.answerService.like(answer, userInfor);
+    return String.format("redirect:/ui/question/question_detail/%s", answer.getQuestion().getId());
   }      </pre>
 </section>
 </main>
