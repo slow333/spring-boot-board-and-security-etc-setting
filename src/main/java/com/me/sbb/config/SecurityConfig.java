@@ -7,11 +7,17 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -22,19 +28,34 @@ public class SecurityConfig {
     return new BCryptPasswordEncoder();
   }
 
+  CorsConfigurationSource corsConf() {
+    return request -> {
+      CorsConfiguration config = new CorsConfiguration();
+      config.setAllowedHeaders(Collections.singletonList("*"));
+      config.setAllowedMethods(Collections.singletonList("*"));
+      config.setAllowedOrigins(Arrays.asList("http://localhost:8080","http://127.0.0.1:8080"));
+      config.setMaxAge(3600L);
+      config.setAllowCredentials(true);
+
+      return config;
+    };
+  }
   @Bean
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
     http
       .authorizeHttpRequests((auth -> auth
           .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
           .requestMatchers(new AntPathRequestMatcher("/ui/**")).permitAll()
-              )
+        )
       )
-      .csrf(csrf -> csrf
-          .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
+      .cors(corsConfigurer ->
+              corsConfigurer.configurationSource(corsConf()))
+      .csrf(AbstractHttpConfigurer::disable)
+/*      .csrf(csrf -> csrf
+           .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
       .headers(headers ->  headers
         .addHeaderWriter(new XFrameOptionsHeaderWriter(
-            XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+            XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))) */
       .formLogin((formLogin) ->  formLogin
         .loginPage("/ui/user/login")
         .defaultSuccessUrl("/ui/question/question_list"))

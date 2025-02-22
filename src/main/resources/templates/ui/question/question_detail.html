@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <script src="/js/menu/loadNav_noNav.js"></script>
+  <script defer type="text/javascript" th:src="@{/js/menu/loadNav_noNav.js}"></script>
 </head>
 <body>
 <nav th:replace="~{ui/utils/navbar :: navbarFragment}"></nav>
@@ -11,7 +11,8 @@
   <h2>Question detail 화면</h2>
     <h3 th:text="|제목 : ${question.subject}|"></h3>
     <h3 th:utext="${@commonUtil.markdown(question.content)}"></h3>
-    <form th:action="@{|/ui/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
+    <form th:action="@{|/ui/answer/create/${question.id}|}"
+          th:object="${answerForm}" method="post">
 <!--/* answerForm을 object로 주입해서 answer 객체를 가져올수 있음 */-->
       <div th:replace="~{ui/utils/form_errors :: formErrorsFragment}"></div>
       <div th:if="${#fields.hasAnyErrors()}">
@@ -86,13 +87,14 @@
 
   deleteQ?.addEventListener('click', setLocation);
   deleteA?.addEventListener('click', setLocation);
-  qLike.addEventListener('click', setLocation);
-  aLikes.forEach(el => el.addEventListener('click', setLocation));
+  qLike.addEventListener('click', setLocationLike);
+  aLikes.forEach(el => el.addEventListener('click', setLocationLike ));
 
   function setLocation() {
-    if(confirm("정말로 삭제하시겠습니까?")) {
-        location.href = this.dataset.uri;
-    };
+    if(confirm("삭제할까요")) { location.href = this.dataset.uri; };
+  }
+  function setLocationLike() {
+    if(confirm("삭제할까요")) { location.href = this.dataset.uri; };
   }
 </script>
 </body>

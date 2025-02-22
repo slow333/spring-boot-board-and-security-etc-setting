@@ -5,8 +5,8 @@
 </head>
 <body>
 <nav th:replace="~{ui/utils/navbar :: navbarFragment}"></nav>
-<main style="height: 90vh">
-  <div class="login-signup" >
+<main>
+  <div class="login-signup"  style="height: 90vh">
     <h1>회원 가입 페이지</h1>
     <form th:action="@{|/ui/user/signup|}"
           th:object="${userForm}"

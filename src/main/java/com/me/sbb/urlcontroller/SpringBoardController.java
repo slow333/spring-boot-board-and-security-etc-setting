@@ -1,13 +1,12 @@
 package com.me.sbb.urlcontroller;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/spring")
-public class BoardController {
+public class SpringBoardController {
 
   @GetMapping("/00-setting/sbb-index")
   public String sbbIndex() {
@@ -158,6 +157,11 @@ public class BoardController {
   @GetMapping("/04-board-more/05-markdown")
   public String addMarkdown() {
     return "spring/04-board-more/05-markdown";
+  }
+
+  @GetMapping("/04-board-more/06-search")
+  public String addSearch() {
+    return "spring/04-board-more/06-search";
   }
 
 

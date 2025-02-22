@@ -247,18 +247,21 @@ tr, td, th {
   flex-direction: column;
   padding: 6px;
   margin-left: 0;
+  text-overflow: ellipsis;
 }
 .aside > ul h2 {
   font-size: 18px;
   padding:6px 0; margin:0;
+  text-overflow: ellipsis;
 }
 .aside > ul h2:before {
   content: "";
 }
-.aside ul > li {
+.aside ul li {
   list-style: none;
   padding: 0;
   margin:0;
+  text-overflow: ellipsis;
 }
 .aside ul li:hover {
   background-color: var(--colorbright);
@@ -268,7 +271,7 @@ tr, td, th {
   padding: 4px;
   margin:0;
 }
-.aside .sub{
+/*.aside .sub{
   color: var(--colorgray);
   padding: 3px;
   margin-bottom: 0;
@@ -278,12 +281,11 @@ tr, td, th {
 .aside .sub:hover{
   color: var(--coloraccent);
   cursor: pointer;
-}
+}*/
 .aside .content {
-  /*display: block;*/
-  /*visibility: hidden;*/
   width: 100%;
   font-size: 15px;
+  text-overflow: ellipsis;
 }
 .aside .content.active {
   display: none;
@@ -294,6 +296,7 @@ tr, td, th {
   display: inline-block;
   text-decoration: none;
   width: 100%;
+  text-overflow: ellipsis;
 }
 .aside .content a:before {
   content: "▸ ";
