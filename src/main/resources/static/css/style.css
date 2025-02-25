@@ -34,12 +34,11 @@ body {
 }
 
 main {
-  padding: 40px 5px 0 206px;
+  padding: 50px 5px 0 206px;
   overflow: auto;
   margin:0 0 40px 0;
   height: auto;
   min-height: calc(100vh - 77px);
-  /*min-height: 100vh;*/
 }
 .no-aside {
   margin-top: 60px;
@@ -491,4 +490,10 @@ td > a {
 .subscribe-form #username, .subscribe-form #password,
 .subscribe-form #email  {
 
+}
+
+.testResult {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--coloraccent);
 }

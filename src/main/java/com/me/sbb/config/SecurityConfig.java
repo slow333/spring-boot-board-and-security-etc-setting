@@ -46,6 +46,7 @@ public class SecurityConfig {
       .authorizeHttpRequests((auth -> auth
           .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
           .requestMatchers(new AntPathRequestMatcher("/ui/**")).permitAll()
+          .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
         )
       )
       .cors(corsConfigurer ->

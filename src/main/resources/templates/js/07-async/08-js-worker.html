@@ -77,7 +77,7 @@ addEventListener("message", (message) => {
 // Generate primes (very inefficiently)
 function generatePrimes(quota) {
   function isPrime(n) {
-    for (let c = 2; c <= Math.sqrt(n); ++c) {
+    for (let c = 2; c &lt;= Math.sqrt(n); ++c) {
       if (n % c === 0) { return false; }
     }
     return true;
@@ -85,7 +85,7 @@ function generatePrimes(quota) {
   const primes = [];
   const maximum = 1000000;
 
-  while (primes.length < quota) {
+  while (primes.length &lt; quota) {
     const candidate = Math.floor(Math.random() * (maximum + 1));
     if (isPrime(candidate)) { primes.push(candidate); }
   }
