@@ -19,7 +19,7 @@
   --colorbrightest:#fafafa;
   --h1: 24px;
   --h2: 20px;
-  --h3: 17px;
+  --h3: 18px;
   --h4: 16px;
   --p: 16px;
   --subtext: 12px;
@@ -34,11 +34,11 @@ body {
 }
 
 main {
-  padding: 50px 5px 0 206px;
+  padding: 50px 5px 0 194px;
   overflow: auto;
   margin:0 0 40px 0;
   height: auto;
-  min-height: calc(100vh - 77px);
+  min-height: calc(100vh - 76px);
 }
 .no-aside {
   margin-top: 60px;
@@ -70,15 +70,12 @@ h1 {
   text-transform: uppercase;
   text-decoration: underline;
 }
-
 h2, h3, h4, h5, h6 {
   font-weight: bolder;
   margin: 7px 0;
   text-align: left;
 }
-h2 {
-  font-size: var(--h2);
-}
+h2 { font-size: var(--h2); }
 h2:before {
   content: "■";
   padding-right: 8px;
@@ -110,9 +107,7 @@ h5:before {
   padding-left: 18px;
   color: #0021dc;
 }
-.linebreak {
-  white-space: pre-wrap;
-}
+.linebreak { white-space: pre-wrap; }
 p {
   line-height: 1.6;
   font-size: var(--p);
@@ -223,7 +218,7 @@ tr, td, th {
   top: 30px;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 190px;
   box-shadow: var(--shadow);
   padding: 18px 0 10px 0;
   height: 100%;
@@ -231,12 +226,11 @@ tr, td, th {
   transition: var(--transition);
 }
 .aside .title {
-  font-size: var(--h2);
+  font-size: 20px;
   font-weight: bolder;
-  color: #fefefe;
-  background-color: #333;
+  color: #333;
   text-align: center;
-  padding: 8px 0;
+  padding: 4px 0;
   margin:0 ;
   font-family: var(--fontstack), serif;
   width:100%;
@@ -244,30 +238,33 @@ tr, td, th {
 .aside > ul {
   display: flex;
   flex-direction: column;
-  padding: 6px;
+  padding: 2px;
   margin-left: 0;
-  text-overflow: ellipsis;
 }
 .aside > ul h2 {
   font-size: 18px;
-  padding:6px 0; margin:0;
+  padding:2px 0; margin:10px 0 3px 0;
+  overflow:hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
-.aside > ul h2:before {
-  content: "";
+.aside > ul:hover h2{
+  overflow:visible;
+  white-space: normal;
+  height:auto;
 }
+.aside > ul h2:before {  content: ""; }
 .aside ul li {
   list-style: none;
   padding: 0;
   margin:0;
-  text-overflow: ellipsis;
 }
 .aside ul li:hover {
   background-color: var(--colorbright);
   cursor: pointer;
 }
 .aside ul li ul {
-  padding: 4px;
+  padding: 2px;
   margin:0;
 }
 /*.aside .sub{
@@ -281,25 +278,29 @@ tr, td, th {
   color: var(--coloraccent);
   cursor: pointer;
 }*/
-.aside .content {
-  width: 100%;
-  font-size: 15px;
-  text-overflow: ellipsis;
-}
-.aside .content.active {
-  display: none;
-}
+
+.aside .content.active {  display: none; }
 .aside .content a{
-  margin-left: 4px;
-  padding: 2px 4px;
+  width:188px;
+  font-size: 16px;
+  margin-left: 6px;
+  padding: 2px 0 2px 4px;
   display: inline-block;
   text-decoration: none;
   width: 100%;
+  overflow:hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
-.aside .content a:before {
-  content: "▸ ";
+.aside .content:hover a{
+  cursor: pointer;
+  overflow:visible;
+  white-space: normal;
+  height:auto;
+  color: #fff;
+  background-color: var(--coloraccent);
 }
+/*.aside .content a:before { content: "▸ "; }*/
 .aside a:link,
 .aside a:visited
 {
@@ -308,17 +309,12 @@ tr, td, th {
   font-weight: 400;
 }
 
-.aside .content:hover a{
-  cursor: pointer;
-  color: yellow;
-  display: inline-block;
-  background-color: var(--coloraccent);
-}
 .aside a.currentUrl {
   color : white;
   background :orangered;
 }
-/*footer style*/
+
+/* ######### footer style ############ */
 footer {
   display: flex;
   align-items: center;

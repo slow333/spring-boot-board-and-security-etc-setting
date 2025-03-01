@@ -166,10 +166,49 @@ public class SpringBoardController {
 
 
 
-  //########## 5번째 장 : etc #################
-    @GetMapping("/05-board-etc/01-start")
-  public String startEtc() {
-    return "spring/05-board-etc/01-start";
+  //########## 5번째 장 : rest aip #################
+  @GetMapping("/05-restapi/00-rest-spring-27-setting")
+  public String restApiBasicsSetting() {
+    return "spring/05-restapi/00-rest-spring-27-setting";
+  }
+
+  @GetMapping("/05-restapi/01-project-basic")
+  public String restApiBasicsProjectBasic() {
+    return "spring/05-restapi/01-project-basic";
+  }
+
+  @GetMapping("/05-restapi/02-get-api")
+  public String restApiBasicsGetApi() {
+    return "spring/05-restapi/02-get-api";
+  }
+
+  @GetMapping("/05-restapi/03-post-api")
+  public String restApiBasicsPostApi() {
+    return "spring/05-restapi/03-post-api";
+  }
+
+  @GetMapping("/05-restapi/04-put-delete-api")
+  public String restApiBasicsPutDeleteApi() {
+    return "spring/05-restapi/04-put-delete-api";
+  }
+
+  @GetMapping("/05-restapi/05-jpa-entity-dao-dto")
+  public String restApiBasicsJpaEntity() {
+    return "spring/05-restapi/05-jpa-entity-dao-dto";
+  }
+  @GetMapping("/05-restapi/06-logback")
+  public String restApiBasicsLogback() {
+    return "spring/05-restapi/06-logback";
+  }
+
+  @GetMapping("/05-restapi/07-validation")
+  public String restApiMoreValid() {
+    return "spring/05-restapi/07-validation";
+  }
+
+  @GetMapping("/05-restapi/08-rest-error-handler")
+  public String restApiMoreErrorHandler() {
+    return "spring/05-restapi/08-rest-error-handler";
   }
 
 
