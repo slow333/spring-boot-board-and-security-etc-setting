@@ -3,7 +3,7 @@ async function loadMenu(){
 
    await loadFooter("/components/common/footer.html");
 
-   let asideUrl = await selectAsideUrl();
+   //let asideUrl = await selectAsideUrl();
    document.querySelector('.navBtn').onclick =  () =>
       document.querySelector('#footer').scrollIntoView(false, {behavior: 'smooth'});
    document.querySelector('.footerBtn').onclick = () => window.scrollTo(0,0);
@@ -11,10 +11,10 @@ async function loadMenu(){
    if(asideUrl){
      responseAside = await fetch(asideUrl);
    }
-   let asideText = await responseAside.text();
-   let aside = await setAside(asideText);
-   document.querySelectorAll('aside ul li ul')
-      .forEach(toggle => toggle.hidden = true);
+   // let asideText = await responseAside.text();
+   // let aside = await setAside(asideText);
+   //document.querySelectorAll('aside ul li ul')
+   //   .forEach(toggle => toggle.hidden = true);
    setStyleByCurrentUrlAtNav(aside);
    showToggleByCurrUrl(aside);
    aside.addEventListener("click", toggleAsideSub);
@@ -42,7 +42,7 @@ async function loadHeadLinks(){
 
 // nav에 설정된 href를 활용해서 현재의 location 기반 aside file 선택
 async function selectAsideUrl () {
-   if(location.href == "http://localhost:8080/ui/user/login" ) {
+   if(location.href == "http://localhost:8080/board/login" ) {
       return null;
    }
    let asideName = location.href.split('/')[3] || "HOME";
